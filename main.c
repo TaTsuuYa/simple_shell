@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 
-int main (int argc, char **argv)
+int main (void)
 {
 	char *command;
 	size_t size = 0;
@@ -14,7 +14,6 @@ int main (int argc, char **argv)
 	struct stat st;
 	pid_t child_id;
 	char *args[2];
-	int ReturnValue;
 
 	args[1] = NULL;
 	while (1)
