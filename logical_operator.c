@@ -1,34 +1,40 @@
 #include "main.h"
 
 
-void LogicalOPhandler(char *argv, char **env) /* TODO: maybe change int */
+/**
+ * LogicalOPhandler - handles logical operators
+ * @str: string to be handled if it contains Logical OP
+ * @env: the environment of the current process
+ * Return: void
+ */
+void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 {
 	int i, bufferIndex = 0;
 	char *buffer;
 
-	buffer = argv;
-	while(*(argv + i - 1) != '\0')
+	buffer = str;
+	while(*(str + i - 1) != '\0')
 	{
-		if (*(argv + i) == '|' &&
-				*(argv + i + 1) == '|')
+		if (*(str + i) == '|' &&
+				*(str + i + 1) == '|')
 		{
-			*(argv + i) = '\0';
+			*(str + i) = '\0';
 			if (executor(parser(buffer), env))
 			{
 				return;
 			}
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 3;
-			buffer = argv + i;
+			buffer = str + i;
 		}
-		else if (*(argv + i) == '&' &&
-						*(argv + i + 1) == '&')
+		else if (*(str + i) == '&' &&
+						*(str + i + 1) == '&')
 		{
-			*(argv + i) = '\0';
+			*(str + i) = '\0';
 			executor(parser(buffer), env);
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 3;
-			buffer = argv + i;
+			buffer = str + i;
 			bufferIndex = 0;
 		}
 		i++;
