@@ -9,17 +9,18 @@
 
 char **parser(char *command)
 {
-	int i, argc, argv;
+	int i, argc;
+	char **argv;
 
-	if (!command)
+	if (command == NULL)
 		return (NULL);
 
 	argc = argcnt(command);
 	argv = malloc(sizeof(char *) * (argc + 1));
-	if (!argv)
+	if (argv == NULL)
 		return (NULL);
 
-	ragv[0] = strtok(command, " ");
+	argv[0] = strtok(command, " ");
 	for (i = 1; i < argc; i++)
 		argv[i] = strtok(NULL, " ");
 
@@ -39,8 +40,10 @@ int argcnt(char *command)
 {
 	int i, count = 1;
 
-	for (i = 0; !command[i]; i++)
+	for (i = 0; command[i] != '\0'; i++)
 		if (command[i] == ' ')
 			count++;
+
+	return (count);
 }
 
