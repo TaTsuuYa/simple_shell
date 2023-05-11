@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 
-int main (int argc, char **argv)
+int main (int argc, char **argv, char **env)
 {
 	char *command;
 	size_t size = 0;
@@ -14,13 +14,16 @@ int main (int argc, char **argv)
 	struct stat st;
 	pid_t child_id;
 	char *args[2];
-	int ReturnValue;
+
+	(void) argc;
+	(void) argv;
 
 	args[1] = NULL;
 	while (1)
 	{
 		write(1, "$ ", 2);
 		commandLen = getline(&command, &size, stdin);
+
 		command[commandLen - 1] = '\0';
 		if (stat(command, &st) != 0)
 		{
@@ -36,7 +39,7 @@ int main (int argc, char **argv)
 			else
 			{
 				args[0] = command;
-				if (execve(args[0], args, NULL) == -1)
+				if (execve(args[0], args, env) == -1)
 				{
 					write(1, "./shell: No such file or directory\n", 35);
 					/* exit(1); */
