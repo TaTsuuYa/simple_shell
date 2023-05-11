@@ -1,20 +1,13 @@
 #include "main.h"
-#include <stdio.h>
 
-int main(void)
+int main(int argc, char **argv, char **env)
 {
-	char **arr;
-	int i = 0;
+	char *arr[] = {"/bin/ls", "-l", NULL};
 
-	printf("before parser");
-	arr = parser("ls -l sdf");
-	printf("after parser");
+	(void) argc;
+	(void) argv;
 
-	while (arr[i] != NULL)
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
+	executor(arr, env);
 
 	return (0);
 }
