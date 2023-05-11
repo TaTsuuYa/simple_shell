@@ -15,13 +15,15 @@ char **parser(char *command)
 		return (NULL);
 
 	argc = argcnt(command);
-	argv = malloc(sizeof(char *) * argc);
+	argv = malloc(sizeof(char *) * (argc + 1));
 	if (!argv)
 		return (NULL);
 
 	ragv[0] = strtok(command, " ");
 	for (i = 1; i < argc; i++)
 		argv[i] = strtok(NULL, " ");
+
+	argv[i + 1] = NULL;
 
 	return (argv);
 }
