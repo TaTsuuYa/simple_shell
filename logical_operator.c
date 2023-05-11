@@ -1,35 +1,36 @@
 #include "main.h"
 
 
-void LogicalOPhandler(char **argv, int argc, char **env) /* TODO: maybe change int */
+void LogicalOPhandler(char *argv, char **env) /* TODO: maybe change int */
 {
 	int i, bufferIndex = 0;
-	char *buffer[argc];
+	char *buffer;
 
-	for (i = 0; i < argc; i++)
+	buffer = argv;
+	while(*(argv + i - 1) != '\0')
 	{
-		if (argv[i][0] == '|' &&
-				argv[i][1] == '|' &&
-				argv[i][2] == '\0')
+		if (*(argv + i) == '|' &&
+				*(argv + i + 1) == '|')
 		{
-			buffer[bufferIndex] = NULL;
-			if (executor(buffer, env))
+			*(argv + i) = '\0';
+			if (executor(parser(buffer), env))
 			{
 				return;
 			}
+			/* TODO: change this to remove preceeding spaces if exist */
+			i += 3;
+			buffer = argv + i;
 		}
-		else if (argv[i][0] == '&' &&
-						argv[i][1] == '&' &&
-						argv[i][2] == '\0')
+		else if (*(argv + i) == '&' &&
+						*(argv + i + 1) == '&')
 		{
-			buffer[bufferIndex] = NULL;
-			executor(buffer, env);
+			*(argv + i) = '\0';
+			executor(parser(buffer), env);
+			/* TODO: change this to remove preceeding spaces if exist */
+			i += 3;
+			buffer = argv + i;
 			bufferIndex = 0;
 		}
-		else
-		{
-			buffer[bufferIndex] = argv[i];
-		}
-		bufferIndex++;
+		i++;
 	}
 }
