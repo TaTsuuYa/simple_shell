@@ -3,14 +3,12 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *arr[] = {"/bin/ls", "-l", NULL};
-  int Result;
+	char *arr[] = {"asd", "-l", "-a", NULL};
 
 	(void) argc;
 	(void) argv;
 
-	Result = executor(arr, env);
-  printf("executor return value = %d\n", Result);
+	printf("exec: %d\n", executor(arr, env));
 
 	return (0);
 }
