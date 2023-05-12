@@ -15,14 +15,7 @@ int executor(char **args, char **env)
 	if (childp != 0)
 	{
 		wait(&status);
-		/* TODO: solve this memory issue */
-#if 0 /* don't change this to 1, it will cause memory errors */
-		while (args[i] != NULL)
-		{
-			free(args[i]);
-			i++;
-		}
-#endif
+		free(args);
 	}
 	else
 	{

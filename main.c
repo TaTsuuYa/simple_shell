@@ -24,6 +24,7 @@ int main (int argc, char **argv, char **env)
 
 		command[commandLen - 1] = '\0';
 		LogicalOPhandler(command, env);
+		free(command);
 #if 1
 	}
 #endif
