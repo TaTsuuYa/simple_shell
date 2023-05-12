@@ -24,7 +24,7 @@ char **parser(char *command)
 	for (i = 1; i < argc; i++)
 		argv[i] = strtok(NULL, " ");
 
-	argv[i + 1] = NULL;
+	argv[i] = NULL;
 
 	return (argv);
 }
