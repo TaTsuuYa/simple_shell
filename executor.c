@@ -5,7 +5,7 @@
  * @args: array of arguments
  * @env: array of environment variables
  *
- * Return: 1 on success, 0 otherise
+ * Return: 0 on success or diffrent value on failure
  */
 
 int executor(char **args, char **env)
@@ -14,11 +14,14 @@ int executor(char **args, char **env)
 	int status;
 
 	if (childp != 0)
+  {
 		wait(&status);
+  }
 	else
+  {
 		if (execve(args[0], args, env) < 0)
 			exit(1);
-
-	return (0);
+  }
+  return (status);
 }
 
