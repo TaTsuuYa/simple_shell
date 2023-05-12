@@ -9,17 +9,17 @@
  */
 void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 {
-	int i, bufferIndex = 0;
+	int i = 0, bufferIndex = 0;
 	char *buffer;
 
 	buffer = str;
-	while(*(str + i - 1) != '\0')
+	while(1)
 	{
 		if (*(str + i) == '|' &&
 				*(str + i + 1) == '|')
 		{
 			*(str + i) = '\0';
-			if (executor(parser(buffer), env))
+			if (!executor(parser(buffer), env))
 			{
 				return;
 			}
@@ -36,6 +36,11 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 			i += 3;
 			buffer = str + i;
 			bufferIndex = 0;
+		}
+		if (*(str + i) == '\0')
+		{
+			executor(parser(buffer), env);
+			return;
 		}
 		i++;
 	}

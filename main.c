@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <stdlib.h>
+#include "main.h"
 
 
 int main (int argc, char **argv, char **env)
@@ -25,28 +20,7 @@ int main (int argc, char **argv, char **env)
 		commandLen = getline(&command, &size, stdin);
 
 		command[commandLen - 1] = '\0';
-		if (stat(command, &st) != 0)
-		{
-			write(1, "./shell: No such file or directory\n", 35);
-		}
-		else
-		{
-			child_id = fork();
-			if (child_id != 0)
-			{
-				wait(&child_id);
-			}
-			else
-			{
-				args[0] = command;
-				if (execve(args[0], args, env) == -1)
-				{
-					write(1, "./shell: No such file or directory\n", 35);
-					/* exit(1); */
-					return (-1);
-				}
-			}
-		}
+		LogicalOPhandler(command, env);
 	}
 	return (0);
 }

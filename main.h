@@ -5,6 +5,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 /* parser */
 char **parser(char *command);
@@ -14,8 +17,6 @@ int argcnt(char *command);
 int executor(char **args, char **env);
 
 /* logical operator handler */
-int executor(char **args, char **env);
 void LogicalOPhandler(char *argv, char **env);
-char **parser(char *command);
 
 #endif

@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * executor - executes commands
  * @args: array of arguments
@@ -11,11 +10,16 @@
 int executor(char **args, char **env)
 {
 	pid_t childp = fork();
-	int status;
+	int status, i = 0;
 
 	if (childp != 0)
 	{
 		wait(&status);
+		while (args[i] != NULL)
+		{
+			free(args[i]);
+			i++;
+		}
 	}
 	else
 	{
