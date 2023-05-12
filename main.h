@@ -13,5 +13,9 @@ int argcnt(char *command);
 /* executor */
 int executor(char **args, char **env);
 
-#endif
+/* logical operator handler */
+int executor(char **args, char **env);
+void LogicalOPhandler(char *argv, char **env);
+char **parser(char *command);
 
+#endif
