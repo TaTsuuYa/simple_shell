@@ -14,14 +14,14 @@ int executor(char **args, char **env)
 	int status;
 
 	if (childp != 0)
-  {
+	{
 		wait(&status);
-  }
+	}
 	else
-  {
+	{
 		if (execve(args[0], args, env) < 0)
-			exit(1);
-  }
-  return (status);
+			exit(98);
+	}
+	return (status);
 }
 
