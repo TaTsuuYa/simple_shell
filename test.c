@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *arr[] = {"asd", "-l", "-a", NULL};
+	char *arr[] = {"/bin/ls", "-l", "-a", NULL};
 
 	(void) argc;
 	(void) argv;

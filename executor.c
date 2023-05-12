@@ -11,13 +11,14 @@
 int executor(char **args, char **env)
 {
 	pid_t childp = fork();
+	int status;
 
 	if (childp != 0)
-		wait(&childp);
+		wait(&status);
 	else
 		if (execve(args[0], args, env) < 0)
-			return(0);
+			exit(1);
 
-	return (1);
+	return (0);
 }
 
