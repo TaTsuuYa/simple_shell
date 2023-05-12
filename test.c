@@ -1,7 +1,15 @@
 #include "main.h"
 
-int main(void)
+#include <stdio.h>
+
+int main(int argc, char **argv, char **env)
 {
-	char *buffer[] = {"ls", "-l", "/user/" "||", "/bin/cal"};
+	char *arr[] = {"ls", "-l", "-a", NULL};
+
+	(void) argc;
+	(void) argv;
+
+	printf("exec: %d\n", executor(arr, env));
+
 	return (0);
 }
