@@ -9,7 +9,7 @@
  */
 void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 {
-	int i = 0, bufferIndex = 0;
+	int i = 0;
 	char *buffer;
 
 	buffer = str;
@@ -36,7 +36,6 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 3;
 			buffer = str + i;
-			bufferIndex = 0;
 		}
 		if (*(str + i) == '\0')
 		{

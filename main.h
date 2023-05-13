@@ -9,6 +9,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+char *FILE_NAME;
+
 /* parser */
 char **parser(char *command);
 int argcnt(char *command);
@@ -18,5 +20,14 @@ int executor(char **args, char **env);
 
 /* logical operator handler */
 void LogicalOPhandler(char *argv, char **env);
+
+/* file test */
+int file_test(char *command);
+
+/* write error */
+void write_err(char *file);
+
+/* _strlen */
+int _strlen(char *s);
 
 #endif

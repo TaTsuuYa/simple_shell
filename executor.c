@@ -10,7 +10,10 @@
 int executor(char **args, char **env)
 {
 	pid_t childp = fork();
-	int status, i = 0;
+	int status;
+
+	if (file_test(args[0]) != 0)
+		return (1);
 
 	if (childp != 0)
 	{
