@@ -14,8 +14,7 @@ int file_test(char *command)
 	if (stat(command, &st) != 0)
 	{
 		write_err(FILE_NAME);
-		write_err(": No such file or directory");
-		write_err("\n");
+		write_err(": No such file or directory\n");
 		return (0);
 	}
 
