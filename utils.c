@@ -68,3 +68,21 @@ int argcnt(char *command)
 	return (count);
 }
 
+/**
+ * isExecutable - checks if command is an executable or alias for a command in /bin/
+ * @command: string, the first element of parser array
+ * Return: 1 if true, otherwise 0
+ */
+int isExecutable(char *command)
+{
+	int i = 0;
+	while (*(command + i) != '\0')
+	{
+		if (*(command + i) == '.' && *(command + i + 1) == '/')
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
