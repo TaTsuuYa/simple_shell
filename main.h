@@ -13,7 +13,6 @@ char *FILE_NAME;
 
 /* parser */
 char **parser(char *command);
-int argcnt(char *command);
 
 /* executor */
 int executor(char **args, char **env);
@@ -21,6 +20,7 @@ int executor(char **args, char **env);
 /* logical operator handler */
 void LogicalOPhandler(char *argv, char **env);
 
+/* ------ utils ------ */
 /* file test */
 int file_test(char *command);
 
@@ -29,5 +29,8 @@ void write_err(char *file);
 
 /* _strlen */
 int _strlen(char *s);
+
+/* argument counter */
+int argcnt(char *command);
 
 #endif
