@@ -29,21 +29,3 @@ char **parser(char *command)
 	return (argv);
 }
 
-/**
- * argcnt - counts the number of arguments
- * @command: stirng commands
- *
- * Return: number of arguments
- */
-
-int argcnt(char *command)
-{
-	int i, count = 1;
-
-	for (i = 0; command[i] != '\0'; i++)
-		if (command[i] == ' ')
-			count++;
-
-	return (count);
-}
-
