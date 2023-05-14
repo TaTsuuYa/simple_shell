@@ -33,4 +33,7 @@ int _strlen(char *s);
 /* argument counter */
 int argcnt(char *command);
 
+/* _strtok */
+char *_strtok(char *str);
+
 #endif
