@@ -86,3 +86,75 @@ int isExecutable(char *command)
 	}
 	return (0);
 }
+
+/**
+ * searchInPath - search for command in every path in PATH
+ * @command: command, 'ls' for example
+ * @env: array of environment variables
+ * Return: the path if found or NULL, return string must be freed
+ */
+char *searchInPath(char *command, char **env)
+{
+	int i;
+	char *path = NULL;
+	char *dir, *newCommand;
+
+	for (i = 0; env[i] != NULL; i++)
+	{
+		if (env[i][0] == 'P' &&
+				env[i][1] == 'A' &&
+				env[i][2] == 'T' &&
+				env[i][3] == 'H')
+		{
+			path = env[i];
+			break;
+		}
+	}
+	if (path == NULL)
+	{
+		/* TODO: maybe change this to indecate path doesn't exist */
+		return (NULL);
+	}
+	path += 5;
+	dir = path;
+	while (*path != '\0')
+	{
+		if (*path == ':')
+		{
+			*path = '\0';
+			/* 2: 1 for the end of string terminator, and 1 for / at the end of path */
+			newCommand = malloc(strlen(command) + strlen(dir) + 2);
+			combinePath(path, command, newCommand);
+			if (file_test(newCommand))
+				return (newCommand);
+			else
+				free(newCommand);
+			dir = ++path;
+		}
+		path++;
+	}
+	return (NULL);
+}
+
+/**
+ * combinePath - combines path and command
+ * @path: path (example '/bin/')
+ * @command: command (example 'ls')
+ * Return: void
+ */
+void combinePath(char *path, char *command, char *dst)
+{
+	int i, j;
+	
+	for (i = 0; path[i] == '\0'; i++)
+	{
+		dst[i] = path[i];
+	}
+	dst[i] = '/';
+	i++;
+	for (j = 0; command[j - 1] == '\0'; i++)
+	{
+		dst[i] = command[j];
+		i++;
+	}
+}
