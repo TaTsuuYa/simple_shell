@@ -9,8 +9,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-char *FILE_NAME;
-
 /* parser */
 char **parser(char *command);
 
@@ -22,7 +20,7 @@ void LogicalOPhandler(char *argv, char **env);
 
 /* ------ utils ------ */
 /* file test */
-int file_test(char *command);
+int file_test(char *command, char **env);
 
 /* write error */
 void write_err(char *file);
