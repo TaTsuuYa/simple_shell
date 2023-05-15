@@ -9,14 +9,14 @@
 char *_strtok(char *str)
 {
 	static char *pos;
-	char *ret;
+	char *ret, q = '\0';
 	int i = 0;
 
 	if (str != NULL)
 		ret = str;
 	else
 	{
-		if (pos == NULL)
+		if (pos == NULL || *pos == '\0')
 			return (NULL);
 		ret = pos;
 	}
@@ -37,9 +37,14 @@ char *_strtok(char *str)
 			break;
 		}
 		if (ret[i] == '"')
+			q = '"';
+		else if (ret[i] == '\'')
+			q = '\'';
+
+		if (q != '\0')
 		{
 			ret = &ret[i + 1];
-			while (ret[i] != '"')
+			while (ret[i] != q)
 			{
 				if (ret[i] == '\0')
 				{
@@ -50,15 +55,7 @@ char *_strtok(char *str)
 			}
 			ret[i] = '\0';
 			pos = &ret[i + 1];
-			break;
-		}
-		if (ret[i] == '\'')
-		{
-			ret = &ret[i + 1];
-			while (ret[i] != '\'')
-				i++;
-			ret[i] = '\0';
-			pos = &ret[i + 1];
+			q = '\0';
 			break;
 		}
 		i++;
