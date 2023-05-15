@@ -20,9 +20,9 @@ char **parser(char *command)
 	if (argv == NULL)
 		return (NULL);
 
-	argv[0] = strtok(command, " ");
+	argv[0] = _strtok(command);
 	for (i = 1; i < argc; i++)
-		argv[i] = strtok(NULL, " ");
+		argv[i] = _strtok(NULL);
 
 	argv[i] = NULL;
 
