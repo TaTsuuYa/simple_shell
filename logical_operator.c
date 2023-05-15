@@ -21,7 +21,6 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 			*(str + i) = '\0';
 			if (!executor(parser(buffer), env))
 			{
-				free(buffer);
 				return;
 			}
 			/* TODO: change this to remove preceeding spaces if exist */

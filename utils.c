@@ -32,17 +32,29 @@ void write_err(char *file)
 /**
  * file_test - checks the existance of a file
  * @command: command string
+ * @env: environment array
  *
  * Return: 1 success, 0 otheriwse
  */
 
-int file_test(char *command)
+int file_test(char *command, char **env)
 {
 	struct stat st;
+	int i;
+	char *file_name;
 
+	/* getting the name of current program */
+	while (env[i] != NULL)
+	{
+		if (env[i][0] == '_' && env[i][1] == '=')
+		{
+			file_name = &env[i][2];
+		}
+		i++;
+	}/* TODO: probably should handle case where `_` env variable doesn't exist */
 	if (stat(command, &st) != 0)
 	{
-		write_err(FILE_NAME);
+		write_err(file_name);
 		write_err(": No such file or directory\n");
 		return (0);
 	}
