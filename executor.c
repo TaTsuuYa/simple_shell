@@ -11,9 +11,28 @@ int executor(char **args, char **env)
 {
 	pid_t childp;
 	int status;
+	char *newCommand;
 
-	if (!file_test(args[0], env, 1))
-		return (1);
+	//if (!file_test(args[0], env, 1))
+	//	return (1);
+	if (isExecutable(args[0]))
+	{
+		if (!file_test(args[0], env, 1))
+			return (1);
+	}
+	else
+	{
+		newCommand = searchInPath(args[0], env);
+		if (newCommand == NULL)
+		{
+			file_test("lsdjfsdlfwersdf", env, 1);
+			return (2); /* TODO: change this */
+		}
+		else
+		{
+			args[0] = newCommand;
+		}
+	}
 
 	childp = fork();
 
@@ -21,6 +40,8 @@ int executor(char **args, char **env)
 	{
 		wait(&status);
 		free(args);
+		if (newCommand != NULL)
+			free(newCommand);
 	}
 	else
 	{

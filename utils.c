@@ -174,6 +174,7 @@ void combinePath(char *path, char *command, char *dst, unsigned int pathSize)
 		dst[i] = command[j];
 		i++;
 	}
+	dst[i] = '\0';
 }
 
 /** _strtok - tokenize @str
