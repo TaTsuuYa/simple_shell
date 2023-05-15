@@ -8,8 +8,8 @@ int main (int argc, char **argv, char **env)
 	ssize_t commandLen;
 
 	(void) argc;
+	(void) argv;
 
-	FILE_NAME = argv[0];
 	/* NOTE: 1 to 0 to test with valgrind */
 #if 1
 	while (1)

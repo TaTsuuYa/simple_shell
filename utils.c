@@ -32,17 +32,29 @@ void write_err(char *file)
 /**
  * file_test - checks the existance of a file
  * @command: command string
+ * @env: environment array
  *
  * Return: 1 success, 0 otheriwse
  */
 
-int file_test(char *command)
+int file_test(char *command, char **env)
 {
 	struct stat st;
+	int i;
+	char *file_name;
 
+	/* getting the name of current program */
+	while (env[i] != NULL)
+	{
+		if (env[i][0] == '_' && env[i][1] == '=')
+		{
+			file_name = &env[i][2];
+		}
+		i++;
+	}/* TODO: probably should handle case where `_` env variable doesn't exist */
 	if (stat(command, &st) != 0)
 	{
-		write_err(FILE_NAME);
+		write_err(file_name);
 		write_err(": No such file or directory\n");
 		return (0);
 	}
@@ -158,3 +170,70 @@ void combinePath(char *path, char *command, char *dst)
 		i++;
 	}
 }
+
+/** _strtok - tokenize @str
+ * @str: pointer to a string
+ *
+ * Return: string
+ */
+
+char *_strtok(char *str)
+{
+	static char *pos;
+	char *ret, q = '\0';
+	int i = 0;
+
+	if (str != NULL)
+		ret = str;
+	else
+	{
+		if (pos == NULL || *pos == '\0')
+			return (NULL);
+		ret = pos;
+	}
+
+
+	while (ret[i] != '\0')
+	{
+		if (ret[i] == ' ')
+		{
+			ret[i] = '\0';
+			while (ret[i + 1] == ' ')
+			{
+				i++;
+				if (ret[i] == '\0')
+					return (ret);
+			}
+			pos = &ret[i + 1];
+			break;
+		}
+		if (ret[i] == '"')
+			q = '"';
+		else if (ret[i] == '\'')
+			q = '\'';
+
+		if (q != '\0')
+		{
+			ret = &ret[i + 1];
+			while (ret[i] != q)
+			{
+				if (ret[i] == '\0')
+				{
+					pos = NULL;
+					return (ret);
+				}
+				i++;
+			}
+			ret[i] = '\0';
+			pos = &ret[i + 1];
+			q = '\0';
+			break;
+		}
+		i++;
+		if (ret[i] == '\0')
+			pos = NULL;
+	}
+
+	return (ret);
+}
+
