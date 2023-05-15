@@ -33,11 +33,12 @@ void write_err(char *file)
  * file_test - checks the existance of a file
  * @command: command string
  * @env: environment array
+ * @verbose: 1 or 0, to indecate if error msg should be printed
  *
  * Return: 1 success, 0 otheriwse
  */
 
-int file_test(char *command, char **env)
+int file_test(char *command, char **env, int verbose)
 {
 	struct stat st;
 	int i;
@@ -54,8 +55,11 @@ int file_test(char *command, char **env)
 	}/* TODO: probably should handle case where `_` env variable doesn't exist */
 	if (stat(command, &st) != 0)
 	{
-		write_err(file_name);
-		write_err(": No such file or directory\n");
+		if (verbose)
+		{
+			write_err(file_name);
+			write_err(": No such file or directory\n");
+		}
 		return (0);
 	}
 
@@ -109,7 +113,7 @@ char *searchInPath(char *command, char **env)
 {
 	int i;
 	char *path = NULL;
-	char *dir, *newCommand;
+	char *dir, *endDir, *newCommand;
 
 	for (i = 0; env[i] != NULL; i++)
 	{
@@ -133,11 +137,11 @@ char *searchInPath(char *command, char **env)
 	{
 		if (*path == ':')
 		{
-			*path = '\0';
+			endDir = path;
 			/* 2: 1 for the end of string terminator, and 1 for / at the end of path */
-			newCommand = malloc(strlen(command) + strlen(dir) + 2);
-			combinePath(path, command, newCommand);
-			if (file_test(newCommand))
+			newCommand = malloc(_strlen(command) + _strlen(dir) + 2);
+			combinePath(dir, command, newCommand, endDir - dir);
+			if (file_test(newCommand, env, 0))
 				return (newCommand);
 			else
 				free(newCommand);
@@ -152,19 +156,20 @@ char *searchInPath(char *command, char **env)
  * combinePath - combines path and command
  * @path: path (example '/bin/')
  * @command: command (example 'ls')
+ * @pathSize: number of bytes to be copied from path
  * Return: void
  */
-void combinePath(char *path, char *command, char *dst)
+void combinePath(char *path, char *command, char *dst, unsigned int pathSize)
 {
-	int i, j;
+	unsigned int i, j;
 	
-	for (i = 0; path[i] == '\0'; i++)
+	for (i = 0; i < pathSize; i++)
 	{
 		dst[i] = path[i];
 	}
 	dst[i] = '/';
 	i++;
-	for (j = 0; command[j - 1] == '\0'; i++)
+	for (j = 0; command[j] != '\0'; j++)
 	{
 		dst[i] = command[j];
 		i++;

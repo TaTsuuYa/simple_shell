@@ -19,7 +19,7 @@ void LogicalOPhandler(char *argv, char **env);
 
 /* ------ utils ------ */
 /* file test */
-int file_test(char *command, char **env);
+int file_test(char *command, char **env, int verbose);
 
 /* write error */
 void write_err(char *file);
@@ -36,7 +36,7 @@ int isExecutable(char *command);
 char *searchInPath(char *command, char **env);
 
 /* path combiner */
-void combinePath(char *path, char *command, char *dst);
+void combinePath(char *path, char *command, char *dst, unsigned int pathSize);
 
 /* _strtok */
 char *_strtok(char *str);
