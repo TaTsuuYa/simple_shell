@@ -30,7 +30,16 @@ int _strlen(char *s);
 /* argument counter */
 int argcnt(char *command);
 
+/* executable tester */
+int isExecutable(char *command);
+
+char *searchInPath(char *command, char **env);
+
+/* path combiner */
+void combinePath(char *path, char *command, char *dst);
+
 /* _strtok */
 char *_strtok(char *str);
+
 
 #endif
