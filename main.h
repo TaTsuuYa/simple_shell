@@ -41,5 +41,10 @@ void combinePath(char *path, char *command, char *dst, unsigned int pathSize);
 /* _strtok */
 char *_strtok(char *str);
 
+/* _strcmp */
+int _strcmp(char *s1, char *s2);
+
+/* _atoi */
+int _atoi(char *s);
 
 #endif
