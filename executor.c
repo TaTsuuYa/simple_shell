@@ -15,7 +15,12 @@ int executor(char **args, char **env)
 
 	/* handeling exit */
 	if (_strcmp(args[0], "exit"))
-		exit(_atoi(args[1]));
+	{
+		if (args[1] != NULL)
+			exit(_atoi(args[1]));
+		else
+			exit(0);
+	}
 
 	/* if (!file_test(args[0], env, 1))
 		return (1); */
