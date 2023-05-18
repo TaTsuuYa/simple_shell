@@ -243,3 +243,61 @@ char *_strtok(char *str)
 	return (ret);
 }
 
+/**
+ * _strcmp - compares two strings
+ * @s1: first string
+ * @s2: second string
+ *
+ * Return: 1 if stings are the same, 0 otherwise
+ */
+
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0;
+
+	while (1)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+
+		if (s1[i] == 0 || s2[i] == 0)
+			return (1);
+
+		i++;
+	}
+
+	return (1);
+}
+
+/**
+ * _atoi - converts a string to an int
+ * @s: string
+ *
+ * Return: int if convertable, 0 otherwise
+ */
+
+int _atoi(char *s)
+{
+	int res = 0, i = 0, sign = 1;
+
+	if (s[0] == '-')
+	{
+		sign = -1;
+		i = 1;
+	}
+
+	while (s[i] != 0)
+	{
+		if (s[i] > '9' || s[i] < '0')
+			return (0);
+
+		res = (res * 10) + (int)(s[i] - '0');
+
+		i++;
+	}
+
+	res *= sign;
+
+	return (res);
+}
+

@@ -13,8 +13,12 @@ int executor(char **args, char **env)
 	int status;
 	char *newCommand;
 
-	//if (!file_test(args[0], env, 1))
-	//	return (1);
+	/* handeling exit */
+	if (_strcmp(args[0], "exit"))
+		exit(_atoi(args[1]));
+
+	/* if (!file_test(args[0], env, 1))
+		return (1); */
 	if (isExecutable(args[0]))
 	{
 		if (!file_test(args[0], env, 1))
