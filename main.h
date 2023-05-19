@@ -17,12 +17,15 @@ int executor(char **args, char **env);
 /* logical operator handler */
 void LogicalOPhandler(char *argv, char **env);
 
+/* handle built-ins */
+int handle_builtins(char **args, char **env);
+
 /* ------ utils ------ */
 /* file test */
 int file_test(char *command, char **env, int verbose);
 
-/* write error */
-void write_err(char *file);
+/* write std */
+ssize_t write_std(char *txt, int field);
 
 /* _strlen */
 int _strlen(char *s);
@@ -46,5 +49,8 @@ int _strcmp(char *s1, char *s2);
 
 /* _atoi */
 int _atoi(char *s);
+
+/* print env */
+void print_env(char **env);
 
 #endif

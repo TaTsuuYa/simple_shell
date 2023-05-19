@@ -22,11 +22,13 @@ int _strlen(char *s)
 /**
  * write_err - prints error to stderr
  * @file: file name
+ *
+ * Return: number fo bytes wtitten, -1 otherwise
  */
 
-void write_err(char *file)
+ssize_t write_std(char *txt, int field)
 {
-	write(STDERR_FILENO, file, _strlen(file));
+	return (write(field, txt, _strlen(txt)));
 }
 
 /**
@@ -57,8 +59,8 @@ int file_test(char *command, char **env, int verbose)
 	{
 		if (verbose)
 		{
-			write_err(file_name);
-			write_err(": No such file or directory\n");
+			write_std(file_name, STDERR_FILENO);
+			write_std(": No such file or directory\n", STDERR_FILENO);
 		}
 		return (0);
 	}
@@ -299,5 +301,21 @@ int _atoi(char *s)
 	res *= sign;
 
 	return (res);
+}
+
+/**
+ * print_env - prints the environment variables
+ * @env: environment variable
+ */
+
+void print_env(char **env)
+{
+	int i = 0;
+
+	for (i = 0; env[i] != NULL; i++)
+	{
+		write_std(env[i], STDIN_FILENO);
+		write_std("\n", STDIN_FILENO);
+	}
 }
 
