@@ -14,11 +14,8 @@ int executor(char **args, char **env)
 	char *newCommand;
 
 	/* handeling built-ins */
-	if (_strcmp(args[0], "exit") || _strcmp(args[0], "env"))
-	{
-		handle_builtins(args, env);
+	if (handle_builtins(args, env))
 		return (0);
-	}
 
 	/* if (!file_test(args[0], env, 1))
 		return (1); */
