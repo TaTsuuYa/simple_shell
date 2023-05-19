@@ -21,6 +21,8 @@ int executor(char **args, char **env)
 		else
 			exit(0);
 	}
+	else if (_strcmp(args[0], "env"))
+		print_env(env);
 
 	/* if (!file_test(args[0], env, 1))
 		return (1); */
