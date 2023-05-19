@@ -47,4 +47,6 @@ int _strcmp(char *s1, char *s2);
 /* _atoi */
 int _atoi(char *s);
 
+char *getVarValue(char *var, char **env);
+int _strncmp(char *s1, char *s2, unsigned int n);
 #endif
