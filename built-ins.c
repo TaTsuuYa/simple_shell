@@ -22,9 +22,9 @@ int handle_builtins(char **args, char **env)
 	{
 		if (args[1] != NULL)
 		{
-			write_std("env: '", STDERR_FILENO);
+			write_std("env: ‘", STDERR_FILENO);
 			write_std(args[1], STDERR_FILENO);
-			write_std("': No such file or directory\n", STDERR_FILENO);
+			write_std("’: No such file or directory\n", STDERR_FILENO);
 		}
 		else
 			print_env(env);
