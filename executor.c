@@ -13,16 +13,12 @@ int executor(char **args, char **env)
 	int status;
 	char *newCommand;
 
-	/* handeling exit */
-	if (_strcmp(args[0], "exit"))
+	/* handeling built-ins */
+	if (_strcmp(args[0], "exit") || _strcmp(args[0], "env"))
 	{
-		if (args[1] != NULL)
-			exit(_atoi(args[1]));
-		else
-			exit(0);
+		handle_builtins(args, env);
+		return (0);
 	}
-	else if (_strcmp(args[0], "env"))
-		print_env(env);
 
 	/* if (!file_test(args[0], env, 1))
 		return (1); */

@@ -17,6 +17,9 @@ int executor(char **args, char **env);
 /* logical operator handler */
 void LogicalOPhandler(char *argv, char **env);
 
+/* handle built-ins */
+void handle_builtins(char **args, char **env);
+
 /* ------ utils ------ */
 /* file test */
 int file_test(char *command, char **env, int verbose);
