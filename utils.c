@@ -80,8 +80,17 @@ int argcnt(char *command)
 	int i, count = 1;
 
 	for (i = 0; command[i] != '\0'; i++)
+	{
 		if (command[i] == ' ')
-			count++;
+		{
+			i++;
+			while(command[i] == ' ' && command[i] != '\0')
+				i++;
+			if (command[i] != '\0')
+				count++;
+			i--;
+		}
+	}
 
 	return (count);
 }
