@@ -271,6 +271,34 @@ int _strcmp(char *s1, char *s2)
 	return (1);
 }
 
+
+/**
+ * _strncmp - compares n bytes from two strings
+ * @s1: first string
+ * @s2: second string
+ * @n: number of bytes to be compared
+ *
+ * Return: 1 if stings are the same, 0 otherwise
+ */
+
+int _strncmp(char *s1, char *s2, unsigned int n)
+{
+	unsigned int i = 0;
+
+	while (n > i)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+
+		if (s1[i] == 0 || s2[i] == 0)
+			return (1);
+
+		i++;
+	}
+
+	return (1);
+}
+
 /**
  * _atoi - converts a string to an int
  * @s: string
@@ -301,6 +329,28 @@ int _atoi(char *s)
 	res *= sign;
 
 	return (res);
+}
+
+/**
+ * getVarValue - returns the value of an env var
+ * @var: environment variables
+ * @env: environment array
+ * Return: arg value or arg name itself
+ */
+char *getVarValue(char *var, char **env)
+{
+	int i = 0;
+	int varLen = _strlen(var);
+
+	while (env[i] != NULL)
+	{
+		if (_strncmp(env[i], var, varLen))
+		{
+			return (&env[i][varLen + 1]);
+		}
+		i++;
+	}
+	return (var);
 }
 
 /**
