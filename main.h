@@ -57,4 +57,5 @@ int _strncmp(char *s1, char *s2, unsigned int n);
 /* print env */
 void print_env(char **env);
 
+void handleCD(char **args, char **env);
 #endif
