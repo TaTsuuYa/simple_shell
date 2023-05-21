@@ -13,14 +13,9 @@ int executor(char **args, char **env)
 	int status;
 	char *newCommand;
 
-	/* handeling exit */
-	if (_strcmp(args[0], "exit"))
-	{
-		if (args[1] != NULL)
-			exit(_atoi(args[1]));
-		else
-			exit(0);
-	}
+	/* handeling built-ins */
+	if (handle_builtins(args, env))
+		return (0);
 
 	/* if (!file_test(args[0], env, 1))
 		return (1); */
