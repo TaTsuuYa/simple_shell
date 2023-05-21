@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 
 /* parser */
-char **parser(char *command);
+char **parser(char *command, char **env);
 
 /* executor */
 int executor(char **args, char **env);

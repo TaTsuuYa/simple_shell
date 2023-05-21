@@ -340,11 +340,16 @@ int _atoi(char *s)
 char *getVarValue(char *var, char **env)
 {
 	int i = 0;
-	int varLen = _strlen(var);
+	int varLen;
 
+	if (*var != '$')
+	{
+		return(var);
+	}
+	varLen = _strlen(var + 1);
 	while (env[i] != NULL)
 	{
-		if (_strncmp(env[i], var, varLen))
+		if (_strncmp(env[i], var + 1, varLen))
 		{
 			return (&env[i][varLen + 1]);
 		}

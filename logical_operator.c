@@ -19,7 +19,7 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 				*(str + i + 1) == '|')
 		{
 			*(str + i) = '\0';
-			if (!executor(parser(buffer), env))
+			if (!executor(parser(buffer, env), env))
 			{
 				return;
 			}
@@ -31,14 +31,14 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 						*(str + i + 1) == '&')
 		{
 			*(str + i) = '\0';
-			executor(parser(buffer), env);
+			executor(parser(buffer, env), env);
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 3;
 			buffer = str + i;
 		}
 		if (*(str + i) == '\0')
 		{
-			executor(parser(buffer), env);
+			executor(parser(buffer, env), env);
 			return;
 		}
 		i++;

@@ -3,11 +3,12 @@
 /**
  * parser - parses the @command
  * @command: input command
+ * @env: environment array
  *
  * Return: pointer to parsed command
  */
 
-char **parser(char *command)
+char **parser(char *command, char **env)
 {
 	int i, argc;
 	char **argv;
@@ -22,7 +23,7 @@ char **parser(char *command)
 
 	argv[0] = _strtok(command);
 	for (i = 1; i < argc; i++)
-		argv[i] = _strtok(NULL);
+		argv[i] = getVarValue(_strtok(NULL), env);
 
 	argv[i] = NULL;
 
