@@ -43,7 +43,7 @@ ssize_t write_std(char *txt, int field)
 int file_test(char *command, char **env, int verbose)
 {
 	struct stat st;
-	int i;
+	int i = 0;
 	char *file_name;
 
 	/* getting the name of current program */
