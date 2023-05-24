@@ -77,18 +77,18 @@ int file_test(char *command, char **env, int verbose)
 
 int argcnt(char *command)
 {
-	int i, count = 1;
+	int i, count = 0, check = 0;
 
 	for (i = 0; command[i] != '\0'; i++)
 	{
-		if (command[i] == ' ')
+		if (command[i] == ' ' && check == 1)
 		{
-			i++;
-			while(command[i] == ' ' && command[i] != '\0')
-				i++;
-			if (command[i] != '\0')
-				count++;
-			i--;
+			check = 0;
+		}
+		else if (command[i] != ' ' && check == 0)
+		{
+			check = 1;
+			count++;
 		}
 	}
 
@@ -197,61 +197,37 @@ void combinePath(char *path, char *command, char *dst, unsigned int pathSize)
 char *_strtok(char *str)
 {
 	static char *pos;
-	char *ret, q = '\0';
+	char *ret;
 	int i = 0;
 
 	if (str != NULL)
-		ret = str;
+	{
+		for (i = 0; str[i] == ' '; i++);
+		ret = &str[i];
+		for (i = 0; ret[i] != ' ' && ret[i] != '\0'; i++);
+		if (ret[i] == '\0')
+		{
+			pos = NULL;
+			return (ret);
+		}
+		ret[i] = '\0';
+		pos = &ret[i + 1];
+		return (ret);
+	}
 	else
 	{
-		if (pos == NULL || *pos == '\0')
-			return (NULL);
-		ret = pos;
-	}
-
-
-	while (ret[i] != '\0')
-	{
-		if (ret[i] == ' ')
-		{
-			ret[i] = '\0';
-			while (ret[i + 1] == ' ')
-			{
-				i++;
-				if (ret[i] == '\0')
-					return (ret);
-			}
-			pos = &ret[i + 1];
-			break;
-		}
-		if (ret[i] == '"')
-			q = '"';
-		else if (ret[i] == '\'')
-			q = '\'';
-
-		if (q != '\0')
-		{
-			ret = &ret[i + 1];
-			while (ret[i] != q)
-			{
-				if (ret[i] == '\0')
-				{
-					pos = NULL;
-					return (ret);
-				}
-				i++;
-			}
-			ret[i] = '\0';
-			pos = &ret[i + 1];
-			q = '\0';
-			break;
-		}
-		i++;
+		for (i = 0; pos[i] == ' '; i++);
+		ret = &pos[i];
+		for (i = 0; ret[i] != ' ' && ret[i] != '\0'; i++);
 		if (ret[i] == '\0')
+		{
 			pos = NULL;
+			return (ret);
+		}
+		ret[i] = '\0';
+		pos = &ret[i + 1];
+		return (ret);
 	}
-
-	return (ret);
 }
 
 /**
