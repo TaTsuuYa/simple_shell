@@ -105,7 +105,7 @@ int isExecutable(char *command)
 	int i = 0;
 	while (*(command + i) != '\0')
 	{
-		if (*(command + i) == '.' && *(command + i + 1) == '/')
+		if (*(command + i) == '/')
 		{
 			return (1);
 		}

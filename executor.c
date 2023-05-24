@@ -11,7 +11,7 @@ int executor(char **args, char **env)
 {
 	pid_t childp;
 	int status;
-	char *newCommand;
+	char *newCommand = NULL;
 
 	/* handeling built-ins */
 	if (handle_builtins(args, env))
