@@ -12,13 +12,9 @@ int executor(char **args, char **env)
 	pid_t childp;
 	int status;
 	char *newCommand = NULL;
-
 	/* handeling built-ins */
 	if (handle_builtins(args, env))
 		return (0);
-
-	/* if (!file_test(args[0], env, 1))
-		return (1); */
 	if (isExecutable(args[0]))
 	{
 		if (!file_test(args[0], env, 1))
@@ -37,7 +33,6 @@ int executor(char **args, char **env)
 			args[0] = newCommand;
 		}
 	}
-
 	childp = fork();
 
 	if (childp != 0)

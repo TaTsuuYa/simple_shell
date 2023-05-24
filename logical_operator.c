@@ -13,7 +13,7 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 	char *buffer;
 
 	buffer = str;
-	while(1)
+	while (1)
 	{
 		if (*(str + i) == '|' &&
 				*(str + i + 1) == '|')

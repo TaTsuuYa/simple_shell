@@ -64,7 +64,8 @@ void handleCD(char **args, char **env)
 	{
 		if (chdir(getVarValue(args[0], env)))
 		{
-			/* TODO: this is not necessarily correct
+			/*
+			 * TODO: this is not necessarily correct
 			 *       if chdir fails, it modify errno to indecate
 			 *       what was the error exactly, but since errno
 			 *       is not part of the allowed function, we assume

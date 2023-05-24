@@ -14,18 +14,19 @@ int _strlen(char *s)
 	if (s == NULL)
 		return (0);
 
-	for (i = 0; s[i] != 0; i++);
+	for (i = 0; s[i] != 0; i++)
+	{}
 
 	return (i);
 }
 
 /**
- * write_err - prints error to stderr
- * @file: file name
+ * write_std - prints error to stderr
+ * @txt: text to be printed
+ * @field: std file descriptor
  *
  * Return: number fo bytes wtitten, -1 otherwise
  */
-
 ssize_t write_std(char *txt, int field)
 {
 	return (write(field, txt, _strlen(txt)));
@@ -54,7 +55,7 @@ int file_test(char *command, char **env, int verbose)
 			file_name = &env[i][2];
 		}
 		i++;
-	}/* TODO: probably should handle case where `_` env variable doesn't exist */
+	} /* TODO: probably should handle case where `_` env variable doesn't exist */
 	if (stat(command, &st) != 0)
 	{
 		if (verbose)
@@ -96,13 +97,15 @@ int argcnt(char *command)
 }
 
 /**
- * isExecutable - checks if command is an executable or alias for a command in /bin/
+ * isExecutable - checks if command is an executable or alias
+ *                for a command in /bin/
  * @command: string, the first element of parser array
  * Return: 1 if true, otherwise 0
  */
 int isExecutable(char *command)
 {
 	int i = 0;
+
 	while (*(command + i) != '\0')
 	{
 		if (*(command + i) == '/')
@@ -113,249 +116,3 @@ int isExecutable(char *command)
 	}
 	return (0);
 }
-
-/**
- * searchInPath - search for command in every path in PATH
- * @command: command, 'ls' for example
- * @env: array of environment variables
- * Return: the path if found or NULL, return string must be freed
- */
-char *searchInPath(char *command, char **env)
-{
-	int i;
-	char *path = NULL;
-	char *dir, *endDir, *newCommand;
-
-	for (i = 0; env[i] != NULL; i++)
-	{
-		if (env[i][0] == 'P' &&
-				env[i][1] == 'A' &&
-				env[i][2] == 'T' &&
-				env[i][3] == 'H')
-		{
-			path = env[i];
-			break;
-		}
-	}
-	if (path == NULL)
-	{
-		/* TODO: maybe change this to indecate path doesn't exist */
-		return (NULL);
-	}
-	path += 5;
-	dir = path;
-	while (*path != '\0')
-	{
-		if (*path == ':')
-		{
-			endDir = path;
-			/* 2: 1 for the end of string terminator, and 1 for / at the end of path */
-			newCommand = malloc(_strlen(command) + _strlen(dir) + 2);
-			combinePath(dir, command, newCommand, endDir - dir);
-			if (file_test(newCommand, env, 0))
-				return (newCommand);
-			else
-				free(newCommand);
-			dir = ++path;
-		}
-		path++;
-	}
-	return (NULL);
-}
-
-/**
- * combinePath - combines path and command
- * @path: path (example '/bin/')
- * @command: command (example 'ls')
- * @pathSize: number of bytes to be copied from path
- * Return: void
- */
-void combinePath(char *path, char *command, char *dst, unsigned int pathSize)
-{
-	unsigned int i, j;
-	
-	for (i = 0; i < pathSize; i++)
-	{
-		dst[i] = path[i];
-	}
-	dst[i] = '/';
-	i++;
-	for (j = 0; command[j] != '\0'; j++)
-	{
-		dst[i] = command[j];
-		i++;
-	}
-	dst[i] = '\0';
-}
-
-/** _strtok - tokenize @str
- * @str: pointer to a string
- *
- * Return: string
- */
-
-char *_strtok(char *str)
-{
-	static char *pos;
-	char *ret;
-	int i = 0;
-
-	if (str != NULL)
-	{
-		for (i = 0; str[i] == ' '; i++);
-		ret = &str[i];
-		for (i = 0; ret[i] != ' ' && ret[i] != '\0'; i++);
-		if (ret[i] == '\0')
-		{
-			pos = NULL;
-			return (ret);
-		}
-		ret[i] = '\0';
-		pos = &ret[i + 1];
-		return (ret);
-	}
-	else
-	{
-		for (i = 0; pos[i] == ' '; i++);
-		ret = &pos[i];
-		for (i = 0; ret[i] != ' ' && ret[i] != '\0'; i++);
-		if (ret[i] == '\0')
-		{
-			pos = NULL;
-			return (ret);
-		}
-		ret[i] = '\0';
-		pos = &ret[i + 1];
-		return (ret);
-	}
-}
-
-/**
- * _strcmp - compares two strings
- * @s1: first string
- * @s2: second string
- *
- * Return: 1 if stings are the same, 0 otherwise
- */
-
-int _strcmp(char *s1, char *s2)
-{
-	int i = 0;
-
-	while (1)
-	{
-		if (s1[i] != s2[i])
-			return (0);
-
-		if (s1[i] == 0 || s2[i] == 0)
-			return (1);
-
-		i++;
-	}
-
-	return (1);
-}
-
-
-/**
- * _strncmp - compares n bytes from two strings
- * @s1: first string
- * @s2: second string
- * @n: number of bytes to be compared
- *
- * Return: 1 if stings are the same, 0 otherwise
- */
-
-int _strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int i = 0;
-
-	while (n > i)
-	{
-		if (s1[i] != s2[i])
-			return (0);
-
-		if (s1[i] == 0 || s2[i] == 0)
-			return (1);
-
-		i++;
-	}
-
-	return (1);
-}
-
-/**
- * _atoi - converts a string to an int
- * @s: string
- *
- * Return: int if convertable, 0 otherwise
- */
-
-int _atoi(char *s)
-{
-	int res = 0, i = 0, sign = 1;
-
-	if (s[0] == '-')
-	{
-		sign = -1;
-		i = 1;
-	}
-
-	while (s[i] != 0)
-	{
-		if (s[i] > '9' || s[i] < '0')
-			return (0);
-
-		res = (res * 10) + (int)(s[i] - '0');
-
-		i++;
-	}
-
-	res *= sign;
-
-	return (res);
-}
-
-/**
- * getVarValue - returns the value of an env var
- * @var: environment variables
- * @env: environment array
- * Return: arg value or arg name itself
- */
-char *getVarValue(char *var, char **env)
-{
-	int i = 0;
-	int varLen;
-
-	if (*var != '$')
-	{
-		return(var);
-	}
-	varLen = _strlen(var + 1);
-	while (env[i] != NULL)
-	{
-		if (_strncmp(env[i], var + 1, varLen))
-		{
-			return (&env[i][varLen + 1]);
-		}
-		i++;
-	}
-	return (var);
-}
-
-/**
- * print_env - prints the environment variables
- * @env: environment variable
- */
-
-void print_env(char **env)
-{
-	int i = 0;
-
-	for (i = 0; env[i] != NULL; i++)
-	{
-		write_std(env[i], STDIN_FILENO);
-		write_std("\n", STDIN_FILENO);
-	}
-}
-
