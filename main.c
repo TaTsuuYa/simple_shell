@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 #endif
-		write(1, "$ ", 2);
+		/* write(1, "$ ", 2); */
 		commandLen = getline(&command, &size, stdin);
 
     if (commandLen == -1)
