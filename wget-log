@@ -1,7 +1,0 @@
---2023-05-25 15:24:18--  https://s3.amazonaws.com/alx-intranet.hbtn.io/files/correction_system/235/checker.bash?X-Amz-Algorithm=AWS4-HMAC-SHA256
-Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
-Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.217.92.46, 52.216.108.205, 52.216.105.253, ...
-Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.217.92.46|:443... connected.
-HTTP request sent, awaiting response... 400 Bad Request
-2023-05-25 15:24:36 ERROR 400: Bad Request.
-

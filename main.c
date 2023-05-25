@@ -28,8 +28,8 @@ int main(int argc, char **argv, char **env)
 			write(1, "($) ", 4);
 		commandLen = getline(&command, &size, stdin);
 
-    if (commandLen == -1)
-      break;
+		if (commandLen == -1)
+			exit(0);
 		command[commandLen - 1] = '\0';
 		LogicalOPhandler(command, env);
 #if 1
@@ -46,3 +46,4 @@ int main(int argc, char **argv, char **env)
 	free(command);
 	return (0);
 }
+

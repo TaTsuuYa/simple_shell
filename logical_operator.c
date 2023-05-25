@@ -44,3 +44,4 @@ void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 		i++;
 	}
 }
+

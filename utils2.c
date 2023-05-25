@@ -175,3 +175,4 @@ int _strncmp(char *s1, char *s2, unsigned int n)
 
 	return (1);
 }
+
