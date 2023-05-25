@@ -26,6 +26,8 @@ int main(int argc, char **argv, char **env)
 		write(1, "$ ", 2);
 		commandLen = getline(&command, &size, stdin);
 
+    if (commandLen == -1)
+      break;
 		command[commandLen - 1] = '\0';
 		LogicalOPhandler(command, env);
 #if 1

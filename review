@@ -1,0 +1,729 @@
+Correct output - case: Execute /bin/ls
+
+Score: 0 out of 1 points
+
+Reason:
+
+ -  - (command)[echo "/bin/ls" | ./hsh]
+
+[GOT]:
+(stdout)[$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+execut... - (command)[echo "/bin/ls" | ./hsh]
+
+[GOT]:
+(stdout)[$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls.bash
+built-ins.c
+checker.bash
+execu... [Diff had to be removed because it was too long] [Diff had to be removed because it was too long]
+
+Files: checker.bash, bin_ls.bash
+
+Full error (available only 10days) : 235_1034_19755_344210_error.txt, 235_1034_19755_344210_error.txt
+
+Correct output - case: Execute /bin/ls 3 times
+
+Score: 0 out of 1 points
+
+Reason:
+
+ -  - (command)[echo "/bin/ls
+/bin/ls
+/bin/ls" | ./hsh]
+
+[GOT]:
+(stdout)[$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.... - (command)[echo "/bin/ls
+/bin/ls
+/bin/ls" | ./hsh]
+
+[GOT]:
+(stdout)[$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_3_times.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.... [Diff had to be removed because it was too long] [Diff had to be removed because it was too long]
+
+Files: checker.bash, bin_ls_3_times.bash
+
+Full error (available only 10days) : 235_1034_19756_344210_error.txt, 235_1034_19756_344210_error.txt
+
+Correct output - case: Execute /bin/ls 4 times (surrounded by spaces)
+
+Score: 0 out of 1 points
+
+Reason:
+
+ -  - (command)[echo "/bin/ls
+     /bin/ls
+/bin/ls
+   /bin/ls     " | ./hsh]
+
+[GOT]:
+(stdout)[$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+uti... - (command)[echo "/bin/ls
+     /bin/ls
+/bin/ls
+   /bin/ls     " | ./hsh]
+
+[GOT]:
+(stdout)[$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+utils3.c
+utils.c
+$ allowed_functions
+bin_ls_spaces.bash
+built-ins.c
+checker.bash
+executor.c
+hsh
+logical_operator.c
+main.c
+main.h
+parser.c
+README.md
+utils2.c
+... [Diff had to be removed because it was too long] [Diff had to be removed because it was too long]
+
+Files: checker.bash, bin_ls_spaces.bash
+
+Full error (available only 10days) : 235_1034_19757_344210_error.txt, 235_1034_19757_344210_error.txt
+
+Correct output - case: Copy the file /bin/ls to hbtn_ls (in the current directory) and execute ./hbtn_ls /var
+
+Score: 0 out of 1 points
+
+Reason:
+
+ -  - (command)[echo "./hbtn_ls /var" | ./hsh]
+
+[GOT]:
+(stdout)[$ backups
+cache
+lib
+local
+lock
+log
+mail
+opt
+run
+spool
+tmp
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor.c
+hbtn_ls
+hsh
+logical_operator.c
+ls_in_current_dir.bash
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor.c
+hbtn_ls
+hsh
+logical_operator.c
+ls_in_current_dir.bash
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor.c
+hbtn_ls
+hsh
+logical_operator.c
+ls_in_current_dir.bash
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor.c
+hbtn_ls
+hsh
+logical_operator.c
+ls_in_current_dir.bash
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor.c
+hbtn_ls
+hsh
+logical_operator.c
+ls_in_current_dir.bash
+main.c
+main.h
+parser.c
+utils.c
+utils2.c
+utils3.c
+$ README.md
+allowed_functions
+built-ins.c
+checker.bash
+executor... - (command)[echo "./hbtn_ls /var" | ./hsh]
+
+[GOT]:
+(stdout)[](Length: 0)
+(stderr)[](Length: 0)
+(status)[]
+
+[EXPECTED]:
+(stdout)[backups
+cache
+lib
+local
+lock
+log
+mail
+opt
+run
+spool
+tmp
+](Length: 56)
+(stderr)[](Length: 0)
+(status)[0]
+
+Environment:
+HOSTNAME=a1ed090b7e85
+LANGUAGE=en_US:en
+PWD=/tmp/correction/1677727239554870278739005945112418199821_5/235/344210
+TZ=America/Los_Angeles
+HOME=/root
+LANG=en_US.UTF-8
+SHLVL=2
+LC_ALL=en_US.UTF-8
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+OLDPWD=/
+_=/usr/bin/env [Diff had to be removed because it was too long] [Diff had to be removed because it was too long]
+
+Files: checker.bash, ls_in_current_dir.bash
+
+Full error (available only 10days) : 235_1034_19758_344210_error.txt
+
+Correct output - case: Spaces only (small)
+
+Score: 1 out of 1 points
+
+Files: checker.bash, empty_input_small.bash
+
+Correct output - case: Spaces only (large)
+
+Score: 1 out of 1 points
+
+Files: checker.bash, empty_input_large.bash
+
+Correct output - case: Spaces only (medium)
+
+Score: 1 out of 1 points
+
+Files: checker.bash, empty_input_medium.bash
