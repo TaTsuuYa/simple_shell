@@ -17,6 +17,10 @@ char **parser(char *command, char **env)
 		return (NULL);
 
 	argc = argcnt(command);
+	if (argc == 0)
+	{
+		return (NULL);
+	}
 	argv = malloc(sizeof(char *) * (argc + 1));
 	if (argv == NULL)
 		return (NULL);

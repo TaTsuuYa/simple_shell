@@ -13,7 +13,9 @@ int executor(char **args, char **env)
 	int status;
 	char *newCommand = NULL;
 	/* handeling built-ins */
-	if (handle_builtins(args, env))
+	if (args == NULL)
+		return (0);
+	else if (handle_builtins(args, env))
 		return (0);
 	if (isExecutable(args[0]))
 	{
