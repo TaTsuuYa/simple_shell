@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **env)
 	{
 #endif
 		if (isInteractive)
-			write(1, "$ ", 2);
+			write(1, "($) ", 4);
 		commandLen = getline(&command, &size, stdin);
 
     if (commandLen == -1)
