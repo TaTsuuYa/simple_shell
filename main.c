@@ -14,6 +14,7 @@ int main(int argc, char **argv, char **env)
 	char *command;
 	size_t size = 0;
 	ssize_t commandLen;
+	int isInteractive = isatty(STDIN_FILENO);
 
 	(void) argc;
 	(void) argv;
@@ -23,7 +24,8 @@ int main(int argc, char **argv, char **env)
 	while (1)
 	{
 #endif
-		/* write(1, "$ ", 2); */
+		if (isInteractive)
+			write(1, "$ ", 2);
 		commandLen = getline(&command, &size, stdin);
 
     if (commandLen == -1)
