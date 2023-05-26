@@ -16,13 +16,11 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 	buffer = str;
 	while (1)
 	{
-		if (*(str + i) == '|' &&
-				*(str + i + 1) == '|')
+		if (*(str + i) == '|' && *(str + i + 1) == '|')
 		{
 			*(str + i) = '\0';
 			if (!executor(parser(buffer, env), env, LINE))
 				return;
-			/* TODO: change this to remove preceeding spaces if exist */
 			i += 2;
 			buffer = str + i;
 		}
@@ -30,7 +28,6 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 		{
 			*(str + i) = '\0';
 			executor(parser(buffer, env), env, LINE);
-			/* TODO: change this to remove preceeding spaces if exist */
 			i += 1;
 			buffer = str + i;
 		}
@@ -41,6 +38,12 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 				return;
 			i += 2;
 			buffer = str + i;
+		}
+		else if ((*(str + i) == ' ' && *(str + i + 1) == '#') || *str == '#')
+		{
+			*(str + i) = '\0';
+			executor(parser(buffer, env), env, LINE);
+			return;
 		}
 		if (*(str + i) == '\0')
 		{
