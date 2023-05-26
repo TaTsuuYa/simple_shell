@@ -35,6 +35,7 @@ int executor(char **args, char **env, int LINE)
 			write_std(args[0], STDERR_FILENO);
 			write_std(": not found\n", STDERR_FILENO);
 			builtin_exit(1, 127);
+			return (127);
 		}
 		else
 		{
