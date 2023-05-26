@@ -91,3 +91,26 @@ void builtin_exit(int mode, int status)
 		exit_status = status;
 }
 
+/**
+ * write_int - prints an int
+ * @i: printed int
+ * @field: std file descriptor
+ */
+
+void write_int(int i, int field)
+{
+	char c = '0' + (i % 10);
+	char *s = malloc(sizeof(char *) * 2);
+
+	s[0] = c;
+	s[1] = '\0';
+
+	if (i == 0)
+		return;
+
+	write_int(i / 10, field);
+	write_std(s, field);
+
+	free(s);
+}
+

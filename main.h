@@ -62,5 +62,8 @@ void handleCD(char **args, char **env);
 /* buit-in exit */
 void builtin_exit(int mode, int status);
 
+/* write int */
+void write_int(int i, int field);
+
 #endif
 
