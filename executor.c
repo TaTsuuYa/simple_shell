@@ -56,7 +56,7 @@ int executor(char **args, char **env, int LINE)
 		if (execve(args[0], args, env) < 0)
 			builtin_exit(0, 98);
 	}
-	builtin_exit(1, status);
+	builtin_exit(1, WEXITSTATUS(status));
 	return (status);
 }
 
