@@ -21,9 +21,7 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 		{
 			*(str + i) = '\0';
 			if (!executor(parser(buffer, env), env, LINE))
-			{
 				return;
-			}
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 2;
 			buffer = str + i;
