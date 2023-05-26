@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **env)
 	char *command = NULL;
 	size_t size = 0;
 	ssize_t commandLen;
-	int isInteractive = isatty(STDIN_FILENO);
+	int isInteractive = isatty(STDIN_FILENO), line = 1;
 
 	(void) argc;
 	(void) argv;
@@ -34,7 +34,8 @@ int main(int argc, char **argv, char **env)
 			exit(0);
 		}
 		command[commandLen - 1] = '\0';
-		LogicalOPhandler(command, env);
+		LogicalOPhandler(command, env, line);
+		line++;
 #if 1
 	}
 #endif
