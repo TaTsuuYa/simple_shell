@@ -19,6 +19,7 @@ int main(int argc, char **argv, char **env)
 	(void) argc;
 	(void) argv;
 
+	builtin_exit(1, 0);
 	/* NOTE: 1 to 0 to test with valgrind */
 #if 1
 	while (1)
@@ -31,7 +32,7 @@ int main(int argc, char **argv, char **env)
 		if (commandLen == -1)
 		{
 			free(command);
-			exit(0);
+			builtin_exit(0, 0);
 		}
 		command[commandLen - 1] = '\0';
 		LogicalOPhandler(command, env, line);

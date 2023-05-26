@@ -75,3 +75,36 @@ void print_env(char **env)
 	}
 }
 
+/**
+ * builtin_exit - hnadles the updating or exiting
+ * @mode: decides whether to update or exit
+ * @status: exit status
+ */
+
+void builtin_exit(int mode, int status)
+{
+	static int exit_status;
+
+	if (mode == 0)
+		exit(exit_status);
+	if (mode == 1)
+		exit_status = status;
+}
+
+/**
+ * write_int - prints an int
+ * @i: printed int
+ * @field: std file descriptor
+ */
+
+void write_int(int i, int field)
+{
+	char c = '0' + (i % 10);
+
+	if (i == 0)
+		return;
+
+	write_int(i / 10, field);
+	write(field, &c, 1);
+}
+

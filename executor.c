@@ -10,7 +10,7 @@
 int executor(char **args, char **env, int LINE)
 {
 	pid_t childp;
-	int status, linenum;
+	int status;
 	char *newCommand = NULL;
 	/* handeling built-ins */
 	if (args == NULL)
@@ -28,13 +28,13 @@ int executor(char **args, char **env, int LINE)
 		if (newCommand == NULL)
 		{
 			write_std(getVarValue("$_", env), STDERR_FILENO);
-			write_std(": line ", STDERR_FILENO);
-			linenum = '0' + LINE;
-			write(STDERR_FILENO, &linenum, 1);
+			write_std(": ", STDERR_FILENO);
+			write_int(LINE, STDERR_FILENO);
 			write_std(": ", STDERR_FILENO);
 			write_std(args[0], STDERR_FILENO);
-			write_std(": command not found\n", STDERR_FILENO);
-			return (2); /* TODO: change this */
+			write_std(": not found\n", STDERR_FILENO);
+			builtin_exit(1, 127);
+			return (127);
 		}
 		else
 		{
@@ -53,8 +53,9 @@ int executor(char **args, char **env, int LINE)
 	else
 	{
 		if (execve(args[0], args, env) < 0)
-			exit(98);
+			builtin_exit(0, 98);
 	}
+	builtin_exit(1, WEXITSTATUS(status));
 	return (status);
 }
 
