@@ -11,9 +11,8 @@
 void LogicalOPhandler(char *str, char **env, int LINE)
 {
 	int i = 0;
-	char *buffer;
+	char *buffer = str;
 
-	buffer = str;
 	while (1)
 	{
 		if (*(str + i) == '|' && *(str + i + 1) == '|')
@@ -46,11 +45,9 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 			return;
 		}
 		if (*(str + i) == '\0')
-		{
-			executor(parser(buffer, env), env, LINE);
-			return;
-		}
+			break;
 		i++;
 	}
+	executor(parser(buffer, env), env, LINE);
 }
 
