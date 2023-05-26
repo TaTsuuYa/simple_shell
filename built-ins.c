@@ -133,6 +133,7 @@ void print_illegal_num(char *status_exit, char **env, int LINE)
 	write_std(": exit: Illegal number: ", STDERR_FILENO);
 	write_std(status_exit, STDERR_FILENO);
 	write_std("\n", STDERR_FILENO);
-	builtin_exit(1, 2);
 	free_alocs(NULL, NULL, 1);
+	builtin_exit(1, 2);
+	builtin_exit(0, 0);
 }
