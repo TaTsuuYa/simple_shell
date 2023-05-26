@@ -8,14 +8,23 @@
  * Return: 1 success, 0 otherwise
  */
 
-int handle_builtins(char **args, char **env)
+int handle_builtins(char **args, char **env, int LINE)
 {
+	int status_exit;
+
 	if (_strcmp(args[0], "exit"))
 	{
 		if (args[1] != NULL)
 		{
-			free_alocs(NULL, NULL, 3);
-			exit(_atoi(args[1]));
+			status_exit = _atoi(args[1]);
+			if (status_exit < 0)
+				print_illegal_num(args[1], env, LINE);
+			else
+			{
+				free_alocs(NULL, NULL, 3);
+				exit(status_exit);
+			}
+			return (1);
 		}
 		else
 		{
@@ -108,4 +117,22 @@ void free_alocs(char *command, char **args, int mode)
 		free(COMMAND);
 	if (mode & 1)
 		free(ARGS);
+}
+
+/**
+ * print_illegal_num - prints illegal number exit error
+ * @status_exit - illegal number
+ * Return: void
+ */
+void print_illegal_num(char *status_exit, char **env, int LINE)
+{
+
+	write_std(getVarValue("$_", env), STDERR_FILENO);
+	write_std(": ", STDERR_FILENO);
+	write_int(LINE, STDERR_FILENO);
+	write_std(": exit: Illegal number: ", STDERR_FILENO);
+	write_std(status_exit, STDERR_FILENO);
+	write_std("\n", STDERR_FILENO);
+	builtin_exit(1, 2);
+	free_alocs(NULL, NULL, 1);
 }

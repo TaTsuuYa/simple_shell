@@ -18,7 +18,7 @@ int executor(char **args, char **env, int LINE);
 void LogicalOPhandler(char *argv, char **env, int LINE);
 
 /* handle built-ins */
-int handle_builtins(char **args, char **env);
+int handle_builtins(char **args, char **env, int LINE);
 
 /* ------ utils ------ */
 /* file test */
@@ -67,6 +67,7 @@ void write_int(int i, int field);
 
 void no_file_msg(char **env, int LINE, char *cmd);
 void free_alocs(char *command, char **args, int mode);
+void print_illegal_num(char *status_exit, char **env, int LINE);
 
 #endif
 

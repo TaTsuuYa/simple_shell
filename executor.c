@@ -19,7 +19,7 @@ int executor(char **args, char **env, int LINE)
 	/* handeling built-ins */
 	if (args == NULL) /* no commands just spaces case */
 		return (0);
-	else if (handle_builtins(args, env))
+	else if (handle_builtins(args, env, LINE))
 		return (0);
 	if (isExecutable(args[0]))
 	{
