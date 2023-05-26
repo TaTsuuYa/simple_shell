@@ -5,6 +5,7 @@
  * LogicalOPhandler - handles logical operators
  * @str: string to be handled if it contains Logical OP
  * @env: the environment of the current process
+ * @LINE: line number
  * Return: void
  */
 void LogicalOPhandler(char *str, char **env, int LINE)
