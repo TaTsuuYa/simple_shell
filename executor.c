@@ -1,8 +1,12 @@
 #include "main.h"
+
+void no_cmd_msg(char **env, int LINE, char *cmd);
+
 /**
  * executor - executes commands
  * @args: array of arguments
  * @env: array of environment variables
+ * @LINE: line number
  *
  * Return: 0 on success or diffrent value on failure
  */
@@ -27,22 +31,13 @@ int executor(char **args, char **env, int LINE)
 		newCommand = searchInPath(args[0], env);
 		if (newCommand == NULL)
 		{
-			write_std(getVarValue("$_", env), STDERR_FILENO);
-			write_std(": ", STDERR_FILENO);
-			write_int(LINE, STDERR_FILENO);
-			write_std(": ", STDERR_FILENO);
-			write_std(args[0], STDERR_FILENO);
-			write_std(": not found\n", STDERR_FILENO);
-			builtin_exit(1, 127);
+			no_cmd_msg(env, LINE, args[0]);
 			return (127);
 		}
 		else
-		{
 			args[0] = newCommand;
-		}
 	}
 	childp = fork();
-
 	if (childp != 0)
 	{
 		wait(&status);
@@ -51,11 +46,27 @@ int executor(char **args, char **env, int LINE)
 			free(newCommand);
 	}
 	else
-	{
 		if (execve(args[0], args, env) < 0)
 			builtin_exit(0, 98);
-	}
 	builtin_exit(1, WEXITSTATUS(status));
 	return (status);
+}
+
+/**
+ * no_cmd_msg - prints a no command message
+ * @env: environment variables
+ * @LINE: line number
+ * @cmd: command
+ */
+
+void no_cmd_msg(char **env, int LINE, char *cmd)
+{
+	write_std(getVarValue("$_", env), STDERR_FILENO);
+	write_std(": ", STDERR_FILENO);
+	write_int(LINE, STDERR_FILENO);
+	write_std(": ", STDERR_FILENO);
+	write_std(cmd, STDERR_FILENO);
+	write_std(": not found\n", STDERR_FILENO);
+	builtin_exit(1, 127);
 }
 
