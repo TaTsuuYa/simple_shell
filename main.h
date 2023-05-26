@@ -65,5 +65,7 @@ void builtin_exit(int mode, int status);
 /* write int */
 void write_int(int i, int field);
 
+void no_file_msg(char **env, int LINE, char *cmd);
+
 #endif
 

@@ -31,7 +31,10 @@ int executor(char **args, char **env, int LINE)
 		newCommand = searchInPath(args[0], env);
 		if (newCommand == NULL)
 		{
-			no_cmd_msg(env, LINE, args[0]);
+			if (_strcmp(getVarValue("$PATH", env), ""))
+				no_file_msg(env, LINE, args[0]);
+			else
+				no_cmd_msg(env, LINE, args[0]);
 			return (127);
 		}
 		else
@@ -67,6 +70,25 @@ void no_cmd_msg(char **env, int LINE, char *cmd)
 	write_std(": ", STDERR_FILENO);
 	write_std(cmd, STDERR_FILENO);
 	write_std(": not found\n", STDERR_FILENO);
+	builtin_exit(1, 127);
+}
+
+
+/**
+ * no_file_msg - prints a no command message
+ * @env: environment variables
+ * @LINE: line number
+ * @cmd: command
+ */
+
+void no_file_msg(char **env, int LINE, char *cmd)
+{
+	write_std(getVarValue("$_", env), STDERR_FILENO);
+	write_std(": ", STDERR_FILENO);
+	write_int(LINE, STDERR_FILENO);
+	write_std(": ", STDERR_FILENO);
+	write_std(cmd, STDERR_FILENO);
+	write_std(": No such file or directory\n", STDERR_FILENO);
 	builtin_exit(1, 127);
 }
 
