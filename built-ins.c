@@ -14,12 +14,12 @@ int handle_builtins(char **args, char **env)
 	{
 		if (args[1] != NULL)
 		{
-			free_alocs(NULL, NULL);
+			free_alocs(NULL, NULL, 3);
 			exit(_atoi(args[1]));
 		}
 		else
 		{
-			free_alocs(NULL, NULL);
+			free_alocs(NULL, NULL, 3);
 			builtin_exit(0, 0);
 		}
 	}
@@ -33,7 +33,9 @@ int handle_builtins(char **args, char **env)
 			write_std("’: No such file or directory\n", STDERR_FILENO);
 		}
 		else
+		{
 			print_env(env);
+		}
 		return (1);
 	}
 	if (_strcmp(args[0], "cd"))
@@ -93,7 +95,7 @@ void handleCD(char **args, char **env)
  * @args: args variable
  * Return: void
  */
-void free_alocs(char *command, char **args)
+void free_alocs(char *command, char **args, int mode)
 {
 	static char *COMMAND;
 	static char **ARGS;
@@ -102,9 +104,8 @@ void free_alocs(char *command, char **args)
 		COMMAND = command;
 	if (args != NULL)
 		ARGS = args;
-	if (command == NULL && args == NULL)
-	{
-		free(ARGS);
+	if (mode & 2)
 		free(COMMAND);
-	}
+	if (mode & 1)
+		free(ARGS);
 }

@@ -66,7 +66,7 @@ void builtin_exit(int mode, int status);
 void write_int(int i, int field);
 
 void no_file_msg(char **env, int LINE, char *cmd);
-void free_alocs(char *command, char **args);
+void free_alocs(char *command, char **args, int mode);
 
 #endif
 
