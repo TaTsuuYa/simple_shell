@@ -8,15 +8,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
 /* parser */
 char **parser(char *command, char **env);
 
 /* executor */
-int executor(char **args, char **env, int LINE);
+int executor(char **args, char **env);
 
 /* logical operator handler */
-void LogicalOPhandler(char *argv, char **env, int LINE);
+void LogicalOPhandler(char *argv, char **env);
 
 /* handle built-ins */
 int handle_builtins(char **args, char **env);

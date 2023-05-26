@@ -7,7 +7,7 @@
  * @env: the environment of the current process
  * Return: void
  */
-void LogicalOPhandler(char *str, char **env, int LINE)
+void LogicalOPhandler(char *str, char **env) /* TODO: maybe change int */
 {
 	int i = 0;
 	char *buffer;
@@ -19,7 +19,7 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 				*(str + i + 1) == '|')
 		{
 			*(str + i) = '\0';
-			if (!executor(parser(buffer, env), env, LINE))
+			if (!executor(parser(buffer, env), env))
 			{
 				return;
 			}
@@ -31,14 +31,14 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 						*(str + i + 1) == '&')
 		{
 			*(str + i) = '\0';
-			executor(parser(buffer, env), env, LINE);
+			executor(parser(buffer, env), env);
 			/* TODO: change this to remove preceeding spaces if exist */
 			i += 3;
 			buffer = str + i;
 		}
 		if (*(str + i) == '\0')
 		{
-			executor(parser(buffer, env), env, LINE);
+			executor(parser(buffer, env), env);
 			return;
 		}
 		i++;

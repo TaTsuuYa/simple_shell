@@ -7,10 +7,10 @@
  * Return: 0 on success or diffrent value on failure
  */
 
-int executor(char **args, char **env, int LINE)
+int executor(char **args, char **env)
 {
 	pid_t childp;
-	int status, linenum;
+	int status;
 	char *newCommand = NULL;
 	/* handeling built-ins */
 	if (args == NULL)
@@ -27,13 +27,7 @@ int executor(char **args, char **env, int LINE)
 		newCommand = searchInPath(args[0], env);
 		if (newCommand == NULL)
 		{
-			write_std(getVarValue("$_", env), STDERR_FILENO);
-			write_std(": line ", STDERR_FILENO);
-			linenum = '0' + LINE;
-			write(STDERR_FILENO, &linenum, 1);
-			write_std(": ", STDERR_FILENO);
-			write_std(args[0], STDERR_FILENO);
-			write_std(": command not found\n", STDERR_FILENO);
+			file_test("lsdjfsdlfwersdf", env, 1);
 			return (2); /* TODO: change this */
 		}
 		else
