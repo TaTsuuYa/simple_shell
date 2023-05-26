@@ -13,9 +13,15 @@ int handle_builtins(char **args, char **env)
 	if (_strcmp(args[0], "exit"))
 	{
 		if (args[1] != NULL)
+		{
+			free_alocs(NULL, NULL);
 			exit(_atoi(args[1]));
+		}
 		else
+		{
+			free_alocs(NULL, NULL);
 			builtin_exit(0, 0);
+		}
 	}
 
 	if (_strcmp(args[0], "env"))
@@ -80,3 +86,25 @@ void handleCD(char **args, char **env)
 	}
 }
 
+
+/**
+ * free_alocs - frees the allocs
+ * @command: command variable
+ * @args: args variable
+ * Return: void
+ */
+void free_alocs(char *command, char **args)
+{
+	static char *COMMAND;
+	static char **ARGS;
+
+	if (command != NULL)
+		COMMAND = command;
+	if (args != NULL)
+		ARGS = args;
+	if (command == NULL && args == NULL)
+	{
+		free(ARGS);
+		free(COMMAND);
+	}
+}

@@ -35,6 +35,7 @@ int main(int argc, char **argv, char **env)
 			builtin_exit(0, 0);
 		}
 		command[commandLen - 1] = '\0';
+		free_alocs(command, NULL);
 		LogicalOPhandler(command, env, line);
 		line++;
 #if 1
