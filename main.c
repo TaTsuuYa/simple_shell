@@ -19,6 +19,7 @@ int main(int argc, char **argv, char **env)
 	(void) argc;
 	(void) argv;
 
+	exit_status = 0;
 	/* NOTE: 1 to 0 to test with valgrind */
 #if 1
 	while (1)

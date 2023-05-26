@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+int exit_status;
 
 /* parser */
 char **parser(char *command, char **env);

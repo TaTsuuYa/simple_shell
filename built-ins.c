@@ -15,7 +15,7 @@ int handle_builtins(char **args, char **env)
 		if (args[1] != NULL)
 			exit(_atoi(args[1]));
 		else
-			exit(0);
+			exit(exit_status);
 	}
 
 	if (_strcmp(args[0], "env"))
