@@ -13,7 +13,7 @@ int executor(char **args, char **env, int LINE)
 	int status, linenum;
 	char *newCommand = NULL;
 	/* handeling built-ins */
-	if (args == NULL)
+	if (args == NULL) /* no commands just spaces case */
 		return (0);
 	else if (handle_builtins(args, env))
 		return (0);

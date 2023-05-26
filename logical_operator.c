@@ -24,16 +24,23 @@ void LogicalOPhandler(char *str, char **env, int LINE)
 				return;
 			}
 			/* TODO: change this to remove preceeding spaces if exist */
-			i += 3;
+			i += 2;
 			buffer = str + i;
 		}
-		else if (*(str + i) == '&' &&
-						*(str + i + 1) == '&')
+		else if (*(str + i) == ';')
 		{
 			*(str + i) = '\0';
 			executor(parser(buffer, env), env, LINE);
 			/* TODO: change this to remove preceeding spaces if exist */
-			i += 3;
+			i += 1;
+			buffer = str + i;
+		}
+		else if (*(str + i) == '&' && *(str + i + 1) == '&')
+		{
+			*(str + i) = '\0';
+			if (executor(parser(buffer, env), env, LINE))
+				return;
+			i += 2;
 			buffer = str + i;
 		}
 		if (*(str + i) == '\0')
