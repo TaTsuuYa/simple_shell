@@ -28,12 +28,12 @@ int executor(char **args, char **env, int LINE)
 		if (newCommand == NULL)
 		{
 			write_std(getVarValue("$_", env), STDERR_FILENO);
-			write_std(": line ", STDERR_FILENO);
+			write_std(": ", STDERR_FILENO);
 			linenum = '0' + LINE;
 			write(STDERR_FILENO, &linenum, 1);
 			write_std(": ", STDERR_FILENO);
 			write_std(args[0], STDERR_FILENO);
-			write_std(": command not found\n", STDERR_FILENO);
+			write_std(": not found\n", STDERR_FILENO);
 			return (2); /* TODO: change this */
 		}
 		else
@@ -55,6 +55,7 @@ int executor(char **args, char **env, int LINE)
 		if (execve(args[0], args, env) < 0)
 			builtin_exit(0, 98);
 	}
+	builtin_exit(1, status);
 	return (status);
 }
 

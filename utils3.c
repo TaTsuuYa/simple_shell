@@ -87,7 +87,7 @@ void builtin_exit(int mode, int status)
 
 	if (mode == 0)
 		exit(exit_status);
-	if(mode == 1)
+	if (mode == 1)
 		exit_status = status;
 }
 
