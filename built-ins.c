@@ -4,6 +4,7 @@
  * handle_builtins - handles the built in commands
  * @args: command
  * @env: env vars
+ * @LINE: line number
  *
  * Return: 1 success, 0 otherwise
  */
@@ -32,7 +33,6 @@ int handle_builtins(char **args, char **env, int LINE)
 			builtin_exit(0, 0);
 		}
 	}
-
 	if (_strcmp(args[0], "env"))
 	{
 		if (args[1] != NULL)
@@ -42,9 +42,7 @@ int handle_builtins(char **args, char **env, int LINE)
 			write_std("’: No such file or directory\n", STDERR_FILENO);
 		}
 		else
-		{
 			print_env(env);
-		}
 		return (1);
 	}
 	if (_strcmp(args[0], "cd"))
@@ -52,7 +50,6 @@ int handle_builtins(char **args, char **env, int LINE)
 		handleCD(args + 1, env);
 		return (1);
 	}
-
 	return (0);
 }
 
@@ -102,6 +99,7 @@ void handleCD(char **args, char **env)
  * free_alocs - frees the allocs
  * @command: command variable
  * @args: args variable
+ * @mode: decides what the function does
  * Return: void
  */
 void free_alocs(char *command, char **args, int mode)
@@ -121,7 +119,9 @@ void free_alocs(char *command, char **args, int mode)
 
 /**
  * print_illegal_num - prints illegal number exit error
- * @status_exit - illegal number
+ * @status_exit: illegal number
+ * @env: environement varieables
+ * @LINE: line number
  * Return: void
  */
 void print_illegal_num(char *status_exit, char **env, int LINE)
