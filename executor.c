@@ -34,7 +34,7 @@ int executor(char **args, char **env, int LINE)
 			write_std(": ", STDERR_FILENO);
 			write_std(args[0], STDERR_FILENO);
 			write_std(": not found\n", STDERR_FILENO);
-			return (2); /* TODO: change this */
+			builtin_exit(1, 127);
 		}
 		else
 		{

@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **env)
 		if (commandLen == -1)
 		{
 			free(command);
-			exit(0);
+			builtin_exit(0, 0);
 		}
 		command[commandLen - 1] = '\0';
 		LogicalOPhandler(command, env, line);
