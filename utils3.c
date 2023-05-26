@@ -75,3 +75,19 @@ void print_env(char **env)
 	}
 }
 
+/**
+ * builtin_exit - hnadles the updating or exiting
+ * @mode: decides whether to update or exit
+ * @status: exit status
+ */
+
+void builtin_exit(int mode, int status)
+{
+	static int exit_status;
+
+	if (mode == 0)
+		exit(exit_status);
+	if(mode == 1)
+		exit_status = status;
+}
+

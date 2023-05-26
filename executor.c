@@ -53,12 +53,8 @@ int executor(char **args, char **env, int LINE)
 	else
 	{
 		if (execve(args[0], args, env) < 0)
-		{
-			exit_status = 98;
-			exit(exit_status);
-		}
+			builtin_exit(0, 98);
 	}
-	exit_status = status;
-	return (exit_status);
+	return (status);
 }
 

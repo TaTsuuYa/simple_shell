@@ -8,8 +8,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int exit_status;
-
 /* parser */
 char **parser(char *command, char **env);
 
@@ -60,5 +58,9 @@ int _strncmp(char *s1, char *s2, unsigned int n);
 void print_env(char **env);
 
 void handleCD(char **args, char **env);
+
+/* buit-in exit */
+void builtin_exit(int mode, int status);
+
 #endif
 
